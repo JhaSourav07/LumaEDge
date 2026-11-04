@@ -396,8 +396,8 @@ ApplicationWindow {
                         edgeName: "Top"
                         edgeEnabled: lightController.topEdgeEnabled
                         intensity: lightController.topEdgeIntensity
-                        onEnabledToggled: (e) => lightController.topEdgeEnabled = e
-                        onIntensityChanged: (i) => lightController.topEdgeIntensity = i
+                        onEdgeToggled: (e) => lightController.topEdgeEnabled = e
+                        onIntensityAdjusted: (i) => lightController.topEdgeIntensity = i
                     }
 
                     EdgeControlRow {
@@ -405,8 +405,8 @@ ApplicationWindow {
                         edgeName: "Bottom"
                         edgeEnabled: lightController.bottomEdgeEnabled
                         intensity: lightController.bottomEdgeIntensity
-                        onEnabledToggled: (e) => lightController.bottomEdgeEnabled = e
-                        onIntensityChanged: (i) => lightController.bottomEdgeIntensity = i
+                        onEdgeToggled: (e) => lightController.bottomEdgeEnabled = e
+                        onIntensityAdjusted: (i) => lightController.bottomEdgeIntensity = i
                     }
 
                     EdgeControlRow {
@@ -414,8 +414,8 @@ ApplicationWindow {
                         edgeName: "Left"
                         edgeEnabled: lightController.leftEdgeEnabled
                         intensity: lightController.leftEdgeIntensity
-                        onEnabledToggled: (e) => lightController.leftEdgeEnabled = e
-                        onIntensityChanged: (i) => lightController.leftEdgeIntensity = i
+                        onEdgeToggled: (e) => lightController.leftEdgeEnabled = e
+                        onIntensityAdjusted: (i) => lightController.leftEdgeIntensity = i
                     }
 
                     EdgeControlRow {
@@ -423,8 +423,8 @@ ApplicationWindow {
                         edgeName: "Right"
                         edgeEnabled: lightController.rightEdgeEnabled
                         intensity: lightController.rightEdgeIntensity
-                        onEnabledToggled: (e) => lightController.rightEdgeEnabled = e
-                        onIntensityChanged: (i) => lightController.rightEdgeIntensity = i
+                        onEdgeToggled: (e) => lightController.rightEdgeEnabled = e
+                        onIntensityAdjusted: (i) => lightController.rightEdgeIntensity = i
                     }
                 }
             }

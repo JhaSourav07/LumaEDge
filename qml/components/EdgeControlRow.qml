@@ -9,8 +9,8 @@ Rectangle {
     property bool edgeEnabled: true
     property real intensity: 1.0
 
-    signal enabledToggled(bool enabled)
-    signal intensityChanged(real newIntensity)
+    signal edgeToggled(bool enabled)
+    signal intensityAdjusted(real newIntensity)
 
     implicitWidth: 320
     implicitHeight: 38
@@ -48,7 +48,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: root.enabledToggled(!root.edgeEnabled)
+                onClicked: root.edgeToggled(!root.edgeEnabled)
             }
         }
 
@@ -64,7 +64,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: root.enabledToggled(!root.edgeEnabled)
+                onClicked: root.edgeToggled(!root.edgeEnabled)
             }
         }
 
@@ -110,7 +110,7 @@ Rectangle {
                 border.width: 1.5
             }
 
-            onMoved: root.intensityChanged(slider.value)
+            onMoved: root.intensityAdjusted(slider.value)
         }
 
         // Percent Text

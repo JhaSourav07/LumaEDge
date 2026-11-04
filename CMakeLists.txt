@@ -93,6 +93,10 @@ qt_add_executable(lumaedge
     ${HEADERS}
 )
 
+set_source_files_properties(qml/themes/LumaTheme.qml
+    PROPERTIES QT_QML_SINGLETON_TYPE TRUE
+)
+
 qt_add_qml_module(lumaedge
     URI LumaEdge
     VERSION 1.0
