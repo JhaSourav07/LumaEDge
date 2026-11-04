@@ -15,7 +15,7 @@ void PlatformDetector::detect()
     const auto env = QProcessEnvironment::systemEnvironment();
     const QString sessionTypeEnv = env.value(QStringLiteral("XDG_SESSION_TYPE")).toLower();
     const QString waylandDisplay = env.value(QStringLiteral("WAYLAND_DISPLAY"));
-    const QString platformName = QGuiApplication::platformName().toLower();
+    const QString platformName = qGuiApp ? QGuiApplication::platformName().toLower() : QString();
 
     if (platformName.contains(QStringLiteral("wayland")) || sessionTypeEnv == QStringLiteral("wayland") || !waylandDisplay.isEmpty()) {
         m_sessionType = SessionType::Wayland;

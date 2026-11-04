@@ -75,5 +75,5 @@ void TestGradientEngine::testCursorCutout()
     QCOMPARE(cutoutAlpha, 0.0f);
 }
 
-QTEST_MAIN(TestGradientEngine)
+QTEST_GUILESS_MAIN(TestGradientEngine)
 #include "test_gradient.moc"

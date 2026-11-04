@@ -23,10 +23,8 @@ jobs:
             qt6-qtdeclarative-devel \
             qt6-qtshadertools-devel \
             wayland-devel \
-            gstreamer1-devel \
-            gstreamer1-plugins-base-devel \
             desktop-file-utils \
-            libappstream-glib
+            appstream
 
       - name: Configure CMake
         run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -36,3 +34,5 @@ jobs:
 
       - name: Run Automated Tests
         run: ctest --test-dir build --output-on-failure
+        env:
+          QT_QPA_PLATFORM: offscreen

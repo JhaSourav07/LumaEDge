@@ -56,5 +56,5 @@ void TestColorTemperature::testNormalizedComponents()
     }
 }
 
-QTEST_MAIN(TestColorTemperature)
+QTEST_GUILESS_MAIN(TestColorTemperature)
 #include "test_colortemperature.moc"

@@ -19,5 +19,5 @@ void TestPlatform::testDetection()
     QVERIFY(!detector.cursorTrackingStatus().isEmpty());
 }
 
-QTEST_MAIN(TestPlatform)
+QTEST_GUILESS_MAIN(TestPlatform)
 #include "test_platform.moc"

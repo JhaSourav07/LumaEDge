@@ -31,3 +31,12 @@ add_executable(test_platform
 target_link_libraries(test_platform PRIVATE Qt6::Core Qt6::Gui Qt6::Test)
 target_include_directories(test_platform PRIVATE ../src/platform)
 add_test(NAME PlatformDetectorTest COMMAND test_platform)
+
+# Ensure tests execute cleanly in headless CI environments
+set_tests_properties(
+    ColorTemperatureTest
+    GradientEngineTest
+    SettingsManagerTest
+    PlatformDetectorTest
+    PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+)
