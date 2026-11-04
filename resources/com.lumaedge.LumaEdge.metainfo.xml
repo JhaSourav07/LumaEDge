@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.lumaedge.LumaEdge</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>LumaEdge</name>
+  <summary>Virtual Lighting for Linux</summary>
+  <description>
+    <p>
+      LumaEdge transforms computer monitors into soft, diffused virtual ring lights.
+      Inspired by Apple macOS Edge Light, LumaEdge illuminates faces during video calls,
+      online meetings, streaming, and recording in low-light environments without requiring
+      external ring light hardware.
+    </p>
+    <p>
+      Features hardware-accelerated GPU shader rendering, Planckian colour temperature
+      calibration (2700K - 6500K), smooth corner blending, multi-monitor support,
+      and non-blocking click-through desktop overlay.
+    </p>
+  </description>
+  <launchable type="desktop-id">lumaedge.desktop</launchable>
+  <url type="homepage">https://github.com/JhaSourav07/ringlight</url>
+  <url type="bugtracker">https://github.com/JhaSourav07/ringlight/issues</url>
+  <provides>
+    <binary>lumaedge</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-11-04">
+      <description>
+        <p>Initial release of LumaEdge for Linux desktop.</p>
+      </description>
+    </release>
+  </releases>
+</component>

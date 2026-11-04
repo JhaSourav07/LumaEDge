@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=LumaEdge
+GenericName=Virtual Ring Light
+Comment=Diffuse edge lighting for video calls, streaming, and recording on Linux
+Exec=lumaedge %u
+Icon=lumaedge
+Terminal=false
+Type=Application
+Categories=Utility;Graphics;AudioVideo;
+Keywords=ringlight;light;edge;camera;video;display;webcam;lighting;
+StartupNotify=true
+StartupWMClass=lumaedge

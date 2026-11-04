@@ -1,0 +1,45 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+.cmake/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.ninja
+.ninja_*
+compile_commands.json
+
+# Binaries and libraries
+bin/
+lib/
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.rpm
+
+# Qt moc, rcc, uic
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+.qmake.stash
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
+*.user
+*.user.*
+.DS_Store
+
+# Test outputs
+Testing/
+*.log

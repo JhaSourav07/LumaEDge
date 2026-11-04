@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:44
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          dnf install -y \
+            gcc-c++ cmake ninja-build \
+            qt6-qtbase-devel \
+            qt6-qtdeclarative-devel \
+            qt6-qtshadertools-devel \
+            wayland-devel \
+            gstreamer1-devel \
+            gstreamer1-plugins-base-devel \
+            desktop-file-utils \
+            libappstream-glib
+
+      - name: Configure CMake
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build LumaEdge
+        run: cmake --build build
+
+      - name: Run Automated Tests
+        run: ctest --test-dir build --output-on-failure
