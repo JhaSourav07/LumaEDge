@@ -14,15 +14,12 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtshadertools-devel
 BuildRequires:  wayland-devel
-BuildRequires:  gstreamer1-devel
-BuildRequires:  gstreamer1-plugins-base-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 
 Requires:       qt6-qtbase
 Requires:       qt6-qtdeclarative
 Requires:       qt6-qtshadertools
-Requires:       gstreamer1
 
 %description
 LumaEdge is a native Linux virtual ring light inspired by Apple's macOS
@@ -39,6 +36,9 @@ low-light environments.
 
 %install
 %cmake_install
+chmod 0644 %{buildroot}%{_datadir}/applications/lumaedge.desktop
+chmod 0644 %{buildroot}%{_datadir}/metainfo/com.lumaedge.LumaEdge.metainfo.xml
+chmod 0644 %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/lumaedge.svg
 
 %check
 %ctest

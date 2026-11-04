@@ -5,6 +5,9 @@
   <project_license>MIT</project_license>
   <name>LumaEdge</name>
   <summary>Virtual Lighting for Linux</summary>
+  <developer id="org.lumaedge">
+    <name>Sourav Jha</name>
+  </developer>
   <description>
     <p>
       LumaEdge transforms computer monitors into soft, diffused virtual ring lights.
