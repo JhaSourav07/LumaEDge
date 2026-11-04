@@ -4,6 +4,7 @@
 - **Product:** LumaEdge (Virtual Ring Light for Linux)
 - **Architecture:** C++20, Qt 6.11, QML, Custom GPU Shaders, Wayland & X11 integration
 - **Target OS:** Fedora Linux 44 Workstation (GNOME Shell, Wayland/X11)
+- **Current Version:** v0.1.0
 
 ---
 
@@ -37,3 +38,5 @@
 - `SettingsManagerTest`: 100% Passed (Configuration persistence via QSettings INI)
 - `PlatformDetectorTest`: 100% Passed (Wayland/X11 session detection & capability discovery)
 - Application build: `bin/lumaedge` compiled cleanly with GCC 16.2.1 and Ninja.
+- RPM Package: Built cleanly via `rpmbuild` (`build/rpm/lumaedge-0.1.0-1.fc44.x86_64.rpm`).
+- AppStream & Desktop Entry: Verified with `appstreamcli validate` and `desktop-file-validate` with zero errors.
