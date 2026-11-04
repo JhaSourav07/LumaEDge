@@ -27,7 +27,7 @@ Item {
         property real cursorSoftness: root.cursorSoftness
         property real cursorEnabled: root.cursorEnabled
 
-        vertexShader: "qrc:/shaders/edge_light.vert.qsb"
-        fragmentShader: "qrc:/shaders/edge_light.frag.qsb"
+        vertexShader: "qrc:/qt/qml/LumaEdge/shaders/edge_light.vert.qsb"
+        fragmentShader: "qrc:/qt/qml/LumaEdge/shaders/edge_light.frag.qsb"
     }
 }

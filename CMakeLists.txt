@@ -91,7 +91,6 @@ set(HEADERS
 qt_add_executable(lumaedge
     ${SOURCES}
     ${HEADERS}
-    resources/resources.qrc
 )
 
 qt_add_qml_module(lumaedge
@@ -105,6 +104,10 @@ qt_add_qml_module(lumaedge
         qml/components/EdgePreview.qml
         qml/components/EdgeControlRow.qml
         qml/themes/LumaTheme.qml
+    RESOURCES
+        resources/icons/lumaedge.svg
+        shaders/edge_light.vert.qsb
+        shaders/edge_light.frag.qsb
 )
 
 target_link_libraries(lumaedge PRIVATE

@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/lumaedge.svg</file>
+        <file alias="icons/lumaedge.svg">icons/lumaedge.svg</file>
     </qresource>
     <qresource prefix="/shaders">
         <file alias="edge_light.vert.qsb">../shaders/edge_light.vert.qsb</file>

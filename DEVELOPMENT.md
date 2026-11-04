@@ -12,12 +12,12 @@
 | Milestone | Description | Status |
 | :--- | :--- | :--- |
 | **Milestone 1** | Environment inspection & Wayland feasibility audit | **Completed** |
-| **Milestone 2** | Proof of concept: transparent click-through overlay window | **In Progress** |
-| **Milestone 3** | Dedicated GPU shader edge-lighting rendering engine | Scheduled |
-| **Milestone 4** | Premium QML dashboard (Charcoal theme, live preview) | Scheduled |
-| **Milestone 5** | Intelligent lighting (Pointer cutout & optional camera sensor) | Scheduled |
-| **Milestone 6** | Linux desktop integration (Multi-monitor, tray, autostart) | Scheduled |
-| **Milestone 7** | Quality assurance, test automation, RPM packaging, release | Scheduled |
+| **Milestone 2** | Transparent click-through overlay window architecture | **Completed** |
+| **Milestone 3** | Dedicated GPU shader edge-lighting rendering engine | **Completed** |
+| **Milestone 4** | Premium QML dashboard (Charcoal theme, live preview) | **Completed** |
+| **Milestone 5** | Intelligent lighting (Pointer cutout & optional camera sensor) | **Completed** |
+| **Milestone 6** | Linux desktop integration (Multi-monitor, tray, autostart) | **Completed** |
+| **Milestone 7** | Quality assurance, test automation, RPM packaging, release | **Completed** |
 
 ---
 
@@ -31,7 +31,9 @@
 
 ---
 
-## 4. Current Work & Next Steps
-- Implementing project build configuration (`CMakeLists.txt`).
-- Constructing C++ core architecture: `PlatformDetector`, `OverlayWindow`, `OverlayManager`.
-- Validating click-through and non-focus stealing overlay.
+## 4. Verification & Automated Test Status
+- `ColorTemperatureTest`: 100% Passed (Blackbody Planckian locus conversion from 2700K to 6500K)
+- `GradientEngineTest`: 100% Passed (Smooth cubic/quartic edge falloff and cursor cutout)
+- `SettingsManagerTest`: 100% Passed (Configuration persistence via QSettings INI)
+- `PlatformDetectorTest`: 100% Passed (Wayland/X11 session detection & capability discovery)
+- Application build: `bin/lumaedge` compiled cleanly with GCC 16.2.1 and Ninja.

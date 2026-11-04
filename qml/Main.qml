@@ -47,7 +47,7 @@ ApplicationWindow {
                         Image {
                             anchors.fill: parent
                             anchors.margins: 4
-                            source: "qrc:/icons/lumaedge.svg"
+                            source: "qrc:/qt/qml/LumaEdge/resources/icons/lumaedge.svg"
                             sourceSize: Qt.size(32, 32)
                         }
                     }

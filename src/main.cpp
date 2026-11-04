@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QStringLiteral("LumaEdge"));
     app.setOrganizationDomain(QStringLiteral("lumaedge.org"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
-    app.setWindowIcon(QIcon(QStringLiteral(":/icons/lumaedge.svg")));
+    app.setWindowIcon(QIcon(QStringLiteral(":/qt/qml/LumaEdge/resources/icons/lumaedge.svg")));
 
     // Command-line parser
     QCommandLineParser parser;
