@@ -1,6 +1,7 @@
 # LumaEdge
 
 <p align="center">
+  <img src="resources/icons/lumaedge.svg" width="100" height="100" alt="LumaEdge Logo" /><br>
   <strong>Virtual Lighting for Linux</strong><br>
   <em>A high-performance, GPU-accelerated virtual edge light and screen ring light for Linux.</em>
 </p>
@@ -11,7 +12,39 @@
 
 **LumaEdge** transforms computer monitors into soft, diffused virtual ring lights. Inspired by Apple's macOS Edge Light, LumaEdge illuminates faces during video calls, online meetings, streaming, and recording in low-light environments without requiring bulky external ring-light hardware.
 
-Designed from the ground up for modern Linux desktop environments, LumaEdge provides native Wayland and X11 support, GPU-accelerated shader rendering, smooth corner blending, and zero CPU waste.
+Designed natively for modern Linux desktop environments, LumaEdge provides native Wayland and X11 support, GPU-accelerated shader rendering, smooth corner blending, and zero CPU waste.
+
+---
+
+## ⚡ Quick Install (One Command)
+
+Choose the installation method that fits your setup:
+
+### Option 1: One-Command User Install (Recommended)
+Installs LumaEdge directly into your user environment (`~/.local/bin`) and registers it in the **Linux App Drawer** immediately with zero `sudo` required:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/JhaSourav07/ringlight/main/install.sh | bash
+```
+
+### Option 2: Fedora RPM (System-Wide via DNF)
+Install the verified Fedora package directly:
+
+```bash
+sudo dnf install -y https://github.com/JhaSourav07/ringlight/releases/download/v0.1.0/lumaedge-0.1.0-1.fc44.x86_64.rpm
+```
+
+### Option 3: Build & Install from Source
+```bash
+git clone https://github.com/JhaSourav07/ringlight.git
+cd ringlight
+./install.sh
+```
+
+Once installed, **LumaEdge** appears instantly in your GNOME / KDE **Applications Menu / App Drawer**. You can also launch it via terminal:
+```bash
+lumaedge
+```
 
 ---
 
@@ -40,25 +73,43 @@ Designed from the ground up for modern Linux desktop environments, LumaEdge prov
 
 ---
 
-## Building and Installation
+## Manual Build Instructions
 
 ### Prerequisites
-Fedora Linux 42+:
+Fedora Linux:
 ```bash
 sudo dnf install -y gcc-c++ cmake ninja-build \
     qt6-qtbase-devel qt6-qtdeclarative-devel qt6-qtshadertools-devel \
-    gstreamer1-devel gstreamer1-plugins-base-devel wayland-devel
+    wayland-devel desktop-file-utils appstream
 ```
 
-### Build
+### Build & Run
 ```bash
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build
+./build/bin/lumaedge
 ```
 
-### Run
+### Run Automated Tests
 ```bash
-./build/bin/lumaedge
+ctest --test-dir build --output-on-failure
+```
+
+---
+
+## Uninstallation
+
+To remove LumaEdge and clear it from your App Drawer:
+
+```bash
+# If installed via install.sh:
+curl -fsSL https://raw.githubusercontent.com/JhaSourav07/ringlight/main/uninstall.sh | bash
+
+# Or from cloned repository:
+./uninstall.sh
+
+# If installed via DNF RPM:
+sudo dnf remove lumaedge
 ```
 
 ---
