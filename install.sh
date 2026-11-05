@@ -37,7 +37,7 @@ else
     TMP_DIR="$(mktemp -d)"
     trap 'rm -rf "${TMP_DIR}"' EXIT
     
-    RPM_URL="https://github.com/JhaSourav07/ringlight/releases/download/v${VERSION}/lumaedge-${VERSION}-1.fc44.x86_64.rpm"
+    RPM_URL="https://github.com/JhaSourav07/LumaEDge/releases/download/v${VERSION}/lumaedge-${VERSION}-1.fc44.x86_64.rpm"
     curl -fsSL -o "${TMP_DIR}/${NAME}.rpm" "${RPM_URL}"
     
     (cd "${TMP_DIR}" && rpm2cpio "${NAME}.rpm" | cpio -idmv > /dev/null 2>&1)

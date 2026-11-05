@@ -24,20 +24,20 @@ Choose the installation method that fits your setup:
 Installs LumaEdge directly into your user environment (`~/.local/bin`) and registers it in the **Linux App Drawer** immediately with zero `sudo` required:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/JhaSourav07/ringlight/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/JhaSourav07/LumaEDge/main/install.sh | bash
 ```
 
 ### Option 2: Fedora RPM (System-Wide via DNF)
 Install the verified Fedora package directly:
 
 ```bash
-sudo dnf install -y https://github.com/JhaSourav07/ringlight/releases/download/v0.1.1/lumaedge-0.1.1-1.fc44.x86_64.rpm
+sudo dnf install -y https://github.com/JhaSourav07/LumaEDge/releases/download/v0.1.1/lumaedge-0.1.1-1.fc44.x86_64.rpm
 ```
 
 ### Option 3: Build & Install from Source
 ```bash
-git clone https://github.com/JhaSourav07/ringlight.git
-cd ringlight
+git clone https://github.com/JhaSourav07/LumaEDge.git
+cd LumaEDge
 ./install.sh
 ```
 
@@ -48,15 +48,46 @@ lumaedge
 
 ---
 
+## 🔄 Updating LumaEdge
+
+When a new release is available, upgrade LumaEdge seamlessly using any of the following methods:
+
+### Option 1: One-Command Quick Upgrade (Recommended)
+Re-running the installer automatically fetches the latest release, rebuilds/updates the binary in `~/.local/bin`, and refreshes desktop launchers without altering your saved preferences:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/JhaSourav07/LumaEDge/main/install.sh | bash
+```
+
+### Option 2: Fedora RPM (DNF)
+Upgrade the RPM package system-wide:
+
+```bash
+sudo dnf upgrade -y https://github.com/JhaSourav07/LumaEDge/releases/download/v0.1.1/lumaedge-0.1.1-1.fc44.x86_64.rpm
+```
+
+### Option 3: Upgrade from Source
+From your local repository clone:
+
+```bash
+cd LumaEDge   # or ringlight
+git pull origin main
+./install.sh
+```
+
+---
+
 ## Features
 
-- **Soft Diffused Edge Illumination:** Realistic radial and cubic falloff across physical screen perimeters. No harsh border lines.
+- **Solid-Core Edge Illumination:** GPU-powered radial and cubic falloff with a 100% solid opacity outer core and smooth inward feathering to eliminate dark desktop bleed-through.
+- **⚡ One-Click Studio Boost:** Instant dashboard and system tray shortcut activating 100% brightness, 50% screen width coverage, and 6500K daylight.
+- **Extended Screen Coverage (50% Width):** Configurable light width up to 50% of screen dimensions, allowing edge light bands to meet in the center for full-fill softbox lighting.
 - **Natural Corner Blending:** Seamless arc and corner falloff joining horizontal and vertical light regions.
 - **Precision Color Temperature:** Calibrated Planckian blackbody locus conversion from 2700K (Candle) to 6500K (Daylight).
 - **Independent Edge Controls:** Configure top, bottom, left, and right illumination independently.
 - **Zero Desktop Disruption:** Fullscreen click-through overlay (`Qt::WindowTransparentForInput`) passes 100% of mouse and keyboard events to background applications. Never steals focus.
 - **Multi-Monitor Awareness:** Automatically detects connected screens, handles different resolutions and High-DPI scaling, and supports multi-display setups.
-- **Optional Ambient Low-Light Auto-Sense:** Local camera-based ambient luminance detection to dynamically adjust brightness. 100% private, no cloud, no frame recording.
+- **Optional Ambient Low-Light Auto-Sense:** Local camera-based ambient luminance detection with smart hysteresis and a protected floor to avoid dimming loops. 100% private, no cloud, no frame recording.
 - **Pointer-Aware Edge Cutout:** Intelligently dims illumination around the cursor on supported desktop sessions.
 - **Premium Charcoal UI:** Minimalist, modern dark dashboard inspired by Linear and Raycast.
 
@@ -103,7 +134,7 @@ To remove LumaEdge and clear it from your App Drawer:
 
 ```bash
 # If installed via install.sh:
-curl -fsSL https://raw.githubusercontent.com/JhaSourav07/ringlight/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/JhaSourav07/LumaEDge/main/uninstall.sh | bash
 
 # Or from cloned repository:
 ./uninstall.sh
