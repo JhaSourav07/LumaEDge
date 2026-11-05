@@ -38,33 +38,27 @@ float GradientEngine::calculateAlphaAt(float x, float y, const QSizeF &screenSiz
     float alphaLeft = 0.0f;
     float alphaRight = 0.0f;
 
-    if (params.edges.topEnabled && dTop < margin) {
-        float norm = 1.0f - (dTop / margin);
-        alphaTop = smoothstep(0.0f, 1.0f, norm) * params.edges.topIntensity;
-    }
+    auto calcEdgeFalloff = [margin](float d, bool enabled, float intensity) -> float {
+        if (!enabled || d >= margin || intensity <= 0.0f) return 0.0f;
+        float norm = 1.0f - (d / margin);
+        // Outer 40% band maintains solid 1.0 alpha, then feathers smoothly across inner 60%
+        return smoothstep(0.0f, 0.6f, norm) * intensity;
+    };
 
-    if (params.edges.bottomEnabled && dBottom < margin) {
-        float norm = 1.0f - (dBottom / margin);
-        alphaBottom = smoothstep(0.0f, 1.0f, norm) * params.edges.bottomIntensity;
-    }
-
-    if (params.edges.leftEnabled && dLeft < margin) {
-        float norm = 1.0f - (dLeft / margin);
-        alphaLeft = smoothstep(0.0f, 1.0f, norm) * params.edges.leftIntensity;
-    }
-
-    if (params.edges.rightEnabled && dRight < margin) {
-        float norm = 1.0f - (dRight / margin);
-        alphaRight = smoothstep(0.0f, 1.0f, norm) * params.edges.rightIntensity;
-    }
+    alphaTop = calcEdgeFalloff(dTop, params.edges.topEnabled, params.edges.topIntensity);
+    alphaBottom = calcEdgeFalloff(dBottom, params.edges.bottomEnabled, params.edges.bottomIntensity);
+    alphaLeft = calcEdgeFalloff(dLeft, params.edges.leftEnabled, params.edges.leftIntensity);
+    alphaRight = calcEdgeFalloff(dRight, params.edges.rightEnabled, params.edges.rightIntensity);
 
     // Combine edges smoothly with spherical/radial corner blending
     // Screen corner checks:
     auto blendCorner = [&](float dx, float dy) {
         if (dx < margin && dy < margin) {
             float distFromCorner = std::sqrt(dx * dx + dy * dy);
-            float cornerNorm = 1.0f - std::clamp(distFromCorner / margin, 0.0f, 1.0f);
-            return smoothstep(0.0f, 1.0f, cornerNorm);
+            if (distFromCorner < margin) {
+                float cornerNorm = 1.0f - std::clamp(distFromCorner / margin, 0.0f, 1.0f);
+                return smoothstep(0.0f, 0.6f, cornerNorm);
+            }
         }
         return -1.0f;
     };

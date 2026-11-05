@@ -199,42 +199,98 @@ ApplicationWindow {
                         }
                     }
 
-                    // Master Power Button
-                    Rectangle {
-                        id: powerBtn
+                    // Power & Studio Boost Controls Row
+                    RowLayout {
                         width: parent.width
-                        height: 48
-                        radius: LumaTheme.radiusMd
-                        color: lightController.active ? LumaTheme.accentPrimary : LumaTheme.bgElevated
-                        border.color: lightController.active ? LumaTheme.accentPrimary : LumaTheme.borderHover
-                        border.width: 1
+                        spacing: 10
 
-                        Behavior on color { ColorAnimation { duration: 150 } }
+                        // Master Power Button
+                        Rectangle {
+                            id: powerBtn
+                            Layout.fillWidth: true
+                            Layout.preferredWidth: 3
+                            height: 48
+                            radius: LumaTheme.radiusMd
+                            color: lightController.active ? LumaTheme.accentPrimary : LumaTheme.bgElevated
+                            border.color: lightController.active ? LumaTheme.accentPrimary : LumaTheme.borderHover
+                            border.width: 1
 
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: lightController.togglePower()
-                        }
+                            Behavior on color { ColorAnimation { duration: 150 } }
 
-                        Row {
-                            anchors.centerIn: parent
-                            spacing: 8
-
-                            Text {
-                                text: "⏻"
-                                color: lightController.active ? "#090d16" : LumaTheme.textPrimary
-                                font.pixelSize: 16
-                                font.bold: true
-                                anchors.verticalCenter: parent.verticalCenter
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: lightController.togglePower()
                             }
 
-                            Text {
-                                text: lightController.active ? "Disable Virtual Ring Light" : "Enable Virtual Ring Light"
-                                color: lightController.active ? "#090d16" : LumaTheme.textPrimary
-                                font.pixelSize: 13
-                                font.weight: Font.DemiBold
-                                anchors.verticalCenter: parent.verticalCenter
+                            Row {
+                                anchors.centerIn: parent
+                                spacing: 8
+
+                                Text {
+                                    text: "⏻"
+                                    color: lightController.active ? "#090d16" : LumaTheme.textPrimary
+                                    font.pixelSize: 16
+                                    font.bold: true
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                Text {
+                                    text: lightController.active ? "Turn Off" : "Turn On"
+                                    color: lightController.active ? "#090d16" : LumaTheme.textPrimary
+                                    font.pixelSize: 13
+                                    font.weight: Font.DemiBold
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+                            }
+                        }
+
+                        // Studio Boost (100% Brightness & Coverage)
+                        Rectangle {
+                            id: boostBtn
+                            Layout.fillWidth: true
+                            Layout.preferredWidth: 2
+                            height: 48
+                            radius: LumaTheme.radiusMd
+                            color: (lightController.active && lightController.brightness >= 0.99 && lightController.widthPercent >= 0.49)
+                                   ? "#f59e0b"
+                                   : LumaTheme.bgElevated
+                            border.color: (lightController.active && lightController.brightness >= 0.99 && lightController.widthPercent >= 0.49)
+                                          ? "#f59e0b"
+                                          : Qt.rgba(245/255, 158/255, 11/255, 0.4)
+                            border.width: 1
+
+                            Behavior on color { ColorAnimation { duration: 150 } }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: lightController.boostLight()
+                            }
+
+                            Row {
+                                anchors.centerIn: parent
+                                spacing: 6
+
+                                Text {
+                                    text: "⚡"
+                                    color: (lightController.active && lightController.brightness >= 0.99 && lightController.widthPercent >= 0.49)
+                                           ? "#090d16"
+                                           : "#f59e0b"
+                                    font.pixelSize: 15
+                                    font.bold: true
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                Text {
+                                    text: "Studio Boost"
+                                    color: (lightController.active && lightController.brightness >= 0.99 && lightController.widthPercent >= 0.49)
+                                           ? "#090d16"
+                                           : LumaTheme.textPrimary
+                                    font.pixelSize: 13
+                                    font.weight: Font.DemiBold
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
                             }
                         }
                     }
@@ -278,7 +334,7 @@ ApplicationWindow {
                         label: "Light Width"
                         valueText: Math.round(value * 100) + "% of screen"
                         from: 0.05
-                        to: 0.35
+                        to: 0.50
                         stepSize: 0.01
                         value: lightController.widthPercent
                         onMoved: lightController.widthPercent = value
@@ -624,7 +680,7 @@ ApplicationWindow {
                 width: parent.width
 
                 Text {
-                    text: "LumaEdge v0.1.0 • " + platformDetector.sessionTypeName + " (" + platformDetector.desktopEnvironmentName + ")"
+                    text: "LumaEdge v0.1.1 • " + platformDetector.sessionTypeName + " (" + platformDetector.desktopEnvironmentName + ")"
                     color: LumaTheme.textMuted
                     font.pixelSize: 11
                     Layout.alignment: Qt.AlignVCenter

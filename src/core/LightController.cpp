@@ -74,7 +74,7 @@ void LightController::setBrightness(float v)
 
 void LightController::setWidthPercent(float v)
 {
-    v = std::clamp(v, 0.05f, 0.35f);
+    v = std::clamp(v, 0.05f, 0.50f);
     if (std::abs(m_widthPercent - v) > 0.001f) {
         m_widthPercent = v;
         if (m_settings) m_settings->setWidthPercent(v);
@@ -263,6 +263,24 @@ void LightController::resetToDefaults()
     setAutoLowLightEnabled(false);
     setAutoLowLightSensitivity(0.5f);
     setSelectedScreenIndex(-1);
+}
+
+void LightController::boostLight()
+{
+    setActive(true);
+    setBrightness(1.0f);
+    setWidthPercent(0.50f);
+    setColorTemperature(6500);
+
+    setTopEdgeEnabled(true);
+    setBottomEdgeEnabled(true);
+    setLeftEdgeEnabled(true);
+    setRightEdgeEnabled(true);
+
+    setTopEdgeIntensity(1.0f);
+    setBottomEdgeIntensity(1.0f);
+    setLeftEdgeIntensity(1.0f);
+    setRightEdgeIntensity(1.0f);
 }
 
 LightParameters LightController::parameters() const

@@ -31,7 +31,7 @@ void EdgeLightRenderer::setBrightness(float b)
 
 void EdgeLightRenderer::setWidthPercent(float w)
 {
-    w = std::clamp(w, 0.05f, 0.35f);
+    w = std::clamp(w, 0.05f, 0.50f);
     if (std::abs(m_params.widthPercent - w) > 0.001f) {
         m_params.widthPercent = w;
         emit widthPercentChanged();

@@ -31,7 +31,7 @@ curl -fsSL https://raw.githubusercontent.com/JhaSourav07/ringlight/main/install.
 Install the verified Fedora package directly:
 
 ```bash
-sudo dnf install -y https://github.com/JhaSourav07/ringlight/releases/download/v0.1.0/lumaedge-0.1.0-1.fc44.x86_64.rpm
+sudo dnf install -y https://github.com/JhaSourav07/ringlight/releases/download/v0.1.1/lumaedge-0.1.1-1.fc44.x86_64.rpm
 ```
 
 ### Option 3: Build & Install from Source

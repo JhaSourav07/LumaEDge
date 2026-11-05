@@ -51,6 +51,10 @@ void SystemTray::setupTray()
         if (m_controller) m_controller->togglePower();
     });
 
+    m_trayMenu->addAction(QStringLiteral("Studio Boost (Max Light)"), [this]() {
+        if (m_controller) m_controller->boostLight();
+    });
+
     m_trayMenu->addSeparator();
 
     auto *brightMenu = m_trayMenu->addMenu(QStringLiteral("Brightness"));

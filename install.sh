@@ -5,7 +5,7 @@ set -euo pipefail
 # Automatically installs binary, desktop launcher, and high-res icon into the Linux App Drawer.
 
 NAME="lumaedge"
-VERSION="0.1.0"
+VERSION="0.1.1"
 APP_NAME="LumaEdge"
 
 echo "=========================================="

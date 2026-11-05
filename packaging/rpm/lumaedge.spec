@@ -1,5 +1,5 @@
 Name:           lumaedge
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Virtual Ring Light for Linux
 
@@ -52,5 +52,12 @@ chmod 0644 %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/lumaedge.svg
 %{_datadir}/metainfo/com.lumaedge.LumaEdge.metainfo.xml
 
 %changelog
+* Thu Nov 05 2026 Sourav Jha <souravkjha2007@gmail.com> - 0.1.1-1
+- Enhanced illumination with solid-core shader profile
+- Expanded maximum width coverage up to 50% for full fill lighting
+- Added one-click Studio Boost mode
+- Fixed camera auto-sensing dimming loop
+- Added Studio Boost quick toggle to system tray
+
 * Wed Nov 04 2026 Sourav Jha <souravkjha2007@gmail.com> - 0.1.0-1
 - Initial release of LumaEdge

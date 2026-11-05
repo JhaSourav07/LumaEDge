@@ -21,7 +21,7 @@ struct EdgeConfig {
 
 struct LightParameters {
     float brightness{0.8f};      // 0.0 to 1.0
-    float widthPercent{0.15f};   // 0.05 to 0.35
+    float widthPercent{0.15f};   // 0.05 to 0.50
     int colorTemperature{4000};  // 2700K to 6500K
     EdgeConfig edges;
 

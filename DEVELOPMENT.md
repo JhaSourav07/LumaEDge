@@ -4,7 +4,7 @@
 - **Product:** LumaEdge (Virtual Ring Light for Linux)
 - **Architecture:** C++20, Qt 6.11, QML, Custom GPU Shaders, Wayland & X11 integration
 - **Target OS:** Fedora Linux 44 Workstation (GNOME Shell, Wayland/X11)
-- **Current Version:** v0.1.0
+- **Current Version:** v0.1.1
 
 ---
 

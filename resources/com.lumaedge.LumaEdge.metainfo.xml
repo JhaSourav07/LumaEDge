@@ -29,6 +29,11 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.1.1" date="2026-11-05">
+      <description>
+        <p>Illumination overhaul: solid-core shader profile, expanded 50% width coverage, one-click Studio Boost mode, and camera ambient dimming fix.</p>
+      </description>
+    </release>
     <release version="0.1.0" date="2026-11-04">
       <description>
         <p>Initial release of LumaEdge for Linux desktop.</p>

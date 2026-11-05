@@ -27,6 +27,11 @@ CameraManager::CameraManager(LightController *controller, QObject *parent)
                 this, &CameraManager::updateCameraState);
         connect(m_controller, &LightController::activeChanged,
                 this, &CameraManager::updateCameraState);
+        connect(m_controller, &LightController::brightnessChanged, this, [this]() {
+            if (m_controller) {
+                m_smoothedTargetBrightness = m_controller->brightness();
+            }
+        });
     }
 
     refreshCameras();
@@ -201,8 +206,8 @@ void CameraManager::processFrameData(const unsigned char *data, int width, int h
     emit lumaChanged();
 
     // Invert luma: darker ambient room requires higher ring light brightness
-    // Target brightness curve:
-    float targetBrightness = std::clamp(1.0f - (normalizedLuma * 0.9f), 0.2f, 1.0f);
+    // Maintain a high floor (0.70f) so auto-adjustment never leaves user underlit or in negative feedback loop
+    float targetBrightness = std::clamp(1.0f - (normalizedLuma * 0.35f), 0.70f, 1.0f);
 
     // Apply sensitivity scaling
     float sensitivity = m_controller ? m_controller->autoLowLightSensitivity() : 0.5f;

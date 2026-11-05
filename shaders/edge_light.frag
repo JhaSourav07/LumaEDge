@@ -11,7 +11,7 @@ layout(std140, binding = 0) uniform buf {
     vec4 edgeIntensities;  // x=top, y=bottom, z=left, w=right
     vec2 cursorPos;        // in pixels
     float brightness;      // 0.0 to 1.0
-    float widthPercent;    // 0.05 to 0.35
+    float widthPercent;    // 0.05 to 0.50
     float cursorRadius;    // in pixels
     float cursorSoftness;  // 0.0 to 1.0
     float cursorEnabled;   // 1.0 if enabled, 0.0 otherwise
@@ -20,6 +20,14 @@ layout(std140, binding = 0) uniform buf {
 float smoothstep_hermite(float e0, float e1, float x) {
     float t = clamp((x - e0) / (e1 - e0), 0.0, 1.0);
     return t * t * (3.0 - 2.0 * t);
+}
+
+float calcEdgeFalloff(float dist, float margin, float intensity) {
+    if (dist >= margin || intensity <= 0.0) return 0.0;
+    float norm = 1.0 - (dist / margin);
+    // Outer 40% band maintains solid 1.0 alpha (no dark desktop bleed-through),
+    // then feathers smoothly to 0.0 across the inner 60%
+    return smoothstep_hermite(0.0, 0.6, norm) * intensity;
 }
 
 void main() {
@@ -34,10 +42,10 @@ void main() {
     float dRight = resolution.x - pixelPos.x;
 
     // Edge falloffs
-    float aTop = (dTop < margin) ? smoothstep_hermite(0.0, 1.0, 1.0 - (dTop / margin)) * edgeIntensities.x : 0.0;
-    float aBottom = (dBottom < margin) ? smoothstep_hermite(0.0, 1.0, 1.0 - (dBottom / margin)) * edgeIntensities.y : 0.0;
-    float aLeft = (dLeft < margin) ? smoothstep_hermite(0.0, 1.0, 1.0 - (dLeft / margin)) * edgeIntensities.z : 0.0;
-    float aRight = (dRight < margin) ? smoothstep_hermite(0.0, 1.0, 1.0 - (dRight / margin)) * edgeIntensities.w : 0.0;
+    float aTop = calcEdgeFalloff(dTop, margin, edgeIntensities.x);
+    float aBottom = calcEdgeFalloff(dBottom, margin, edgeIntensities.y);
+    float aLeft = calcEdgeFalloff(dLeft, margin, edgeIntensities.z);
+    float aRight = calcEdgeFalloff(dRight, margin, edgeIntensities.w);
 
     // Corner radial blending
     float alpha = 0.0;
@@ -47,28 +55,28 @@ void main() {
         float r = length(vec2(dLeft, dTop));
         if (r < margin) {
             float cornerNorm = 1.0 - clamp(r / margin, 0.0, 1.0);
-            alpha = smoothstep_hermite(0.0, 1.0, cornerNorm) * max(edgeIntensities.x, edgeIntensities.z);
+            alpha = smoothstep_hermite(0.0, 0.6, cornerNorm) * max(edgeIntensities.x, edgeIntensities.z);
             isCorner = true;
         }
     } else if (dRight < margin && dTop < margin && edgeIntensities.x > 0.0 && edgeIntensities.w > 0.0) {
         float r = length(vec2(dRight, dTop));
         if (r < margin) {
             float cornerNorm = 1.0 - clamp(r / margin, 0.0, 1.0);
-            alpha = smoothstep_hermite(0.0, 1.0, cornerNorm) * max(edgeIntensities.x, edgeIntensities.w);
+            alpha = smoothstep_hermite(0.0, 0.6, cornerNorm) * max(edgeIntensities.x, edgeIntensities.w);
             isCorner = true;
         }
     } else if (dLeft < margin && dBottom < margin && edgeIntensities.y > 0.0 && edgeIntensities.z > 0.0) {
         float r = length(vec2(dLeft, dBottom));
         if (r < margin) {
             float cornerNorm = 1.0 - clamp(r / margin, 0.0, 1.0);
-            alpha = smoothstep_hermite(0.0, 1.0, cornerNorm) * max(edgeIntensities.y, edgeIntensities.z);
+            alpha = smoothstep_hermite(0.0, 0.6, cornerNorm) * max(edgeIntensities.y, edgeIntensities.z);
             isCorner = true;
         }
     } else if (dRight < margin && dBottom < margin && edgeIntensities.y > 0.0 && edgeIntensities.w > 0.0) {
         float r = length(vec2(dRight, dBottom));
         if (r < margin) {
             float cornerNorm = 1.0 - clamp(r / margin, 0.0, 1.0);
-            alpha = smoothstep_hermite(0.0, 1.0, cornerNorm) * max(edgeIntensities.y, edgeIntensities.w);
+            alpha = smoothstep_hermite(0.0, 0.6, cornerNorm) * max(edgeIntensities.y, edgeIntensities.w);
             isCorner = true;
         }
     }

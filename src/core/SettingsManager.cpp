@@ -105,7 +105,7 @@ void SettingsManager::setBrightness(float v)
 
 void SettingsManager::setWidthPercent(float v)
 {
-    v = std::clamp(v, 0.05f, 0.35f);
+    v = std::clamp(v, 0.05f, 0.50f);
     if (std::abs(m_widthPercent - v) > 0.001f) {
         m_widthPercent = v;
         save();

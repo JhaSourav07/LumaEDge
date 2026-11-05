@@ -105,6 +105,7 @@ public slots:
     void togglePower();
     void setPreset(int kelvin);
     void resetToDefaults();
+    void boostLight();
 
 signals:
     void activeChanged();
